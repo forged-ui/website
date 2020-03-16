@@ -1,14 +1,14 @@
 $(function() {
   "use strict";
 
-  var nav_offset_top = $('header').height() + 50; 
+  var nav_offset_top = $('header').height() + 50;
     /*-------------------------------------------------------------------------------
-	  Navbar 
+	  Navbar
 	-------------------------------------------------------------------------------*/
     function navbarFixed(){
-        if ( $('.header_area').length ){ 
+        if ( $('.header_area').length ){
             $(window).scroll(function() {
-                var scroll = $(window).scrollTop();   
+                var scroll = $(window).scrollTop();
                 if (scroll >= nav_offset_top ) {
                     $(".header_area").addClass("navbar_fixed");
                 } else {
@@ -19,70 +19,43 @@ $(function() {
     };
     navbarFixed();
 
+    var iframe = document.createElement("iframe");
 
+    iframe.style.display = "none";
 
-    /*-------------------------------------------------------------------------------
-	  clients logo slider
-	-------------------------------------------------------------------------------*/
-    if ($('.clients_slider').length) {
-      $('.clients_slider').owlCarousel({
-          loop: true,
-          margin: 30,
-          items: 5,
-          nav: false,
-          dots: false,
-          responsiveClass: true,
-          autoplay: 2500,
-          slideSpeed: 300,
-          paginationSpeed: 500,
-          responsive: {
-              0: {
-                  items: 1,
-              },
-              768: {
-                  items: 3,
-              },
-              1024: {
-                  items: 4,
-              },
-              1224: {
-                  items: 5
-              }
-          }
-      })
+    iframe.onload = function() {
+        iframe.style.display = "block";
+    };
+
+    window.addEventListener("message", function(event) {
+        if (!event.data) {
+            return;
+        }
+
+        var parts = event.data.split("→");
+
+        if (parts[0] === "gitstore.height") {
+            iframe.style.height = parts[1] + "px";
+        }
+
+        if (parts[0] === "gitstore.location") {
+            var link = document.createElement("a");
+            link.setAttribute("href", parts[1]);
+            link.setAttribute("target", "_blank");
+            link.click();
+        }
+
+        if (parts[0] === "gitstore.reload") {
+            iframe.contentWindow.postMessage(event.data, "*");
+        }
+    });
+
+    var target = document.querySelector("#gitstore-embed");
+
+    if (target) {
+        target.appendChild(iframe);
+        iframe.src = "https://enjoy.gitstore.app/repositories/OwenMelbz/forged-ui/embed";
     }
-
-
-    /*-------------------------------------------------------------------------------
-	  testimonial slider
-	-------------------------------------------------------------------------------*/
-    if ($('.testimonial').length) {
-      $('.testimonial').owlCarousel({
-          loop: true,
-          margin: 30,
-          items: 5,
-          nav: false,
-          dots: true,
-          responsiveClass: true,
-          slideSpeed: 300,
-          paginationSpeed: 500,
-          responsive: {
-              0: {
-                  items: 1
-              }
-          }
-      })
-    }
-
-
-  /*-------------------------------------------------------------------------------
-	  Mailchimp 
-	-------------------------------------------------------------------------------*/
-	function mailChimp() {
-		$('#mc_embed_signup').find('form').ajaxChimp();
-	}
-  mailChimp();
-  
 });
 
 
