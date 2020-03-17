@@ -864,7 +864,10 @@ h3, .h3 {
 
 @media (min-width: 760px) {
     .hero-image {
-        height: 500px; width: auto; position: relative; top: -40px;
+        height: 500px;
+        width: auto;
+        position: relative;
+        top: -40px;
     }
 }
 
@@ -994,6 +997,94 @@ h3, .h3 {
 .card-feature:hover {
     background: #fff;
     box-shadow: 0px 10px 20px 0px rgba(33, 20, 106, 0.1)
+}
+
+.card-pricing {
+    background: #faf9ff;
+    border-radius: 3px;
+    border: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s
+}
+
+.card-pricing:hover {
+    background: #fff;
+    box-shadow: 0px 20px 25.5px 4.5px rgba(33, 20, 106, 0.1)
+}
+
+.card-pricing:hover .button {
+    background: #21146a;
+    color: #fff
+}
+
+.card-pricing__header {
+    border-bottom: 1px solid #ebebeb;
+    padding: 40px 7px
+}
+
+.card-pricing__header h4 {
+    font-size: 27px;
+    font-weight: 700;
+    margin-bottom: 5px
+}
+
+.card-pricing__header p {
+    margin-bottom: 27px
+}
+
+.card-pricing__price {
+    font-size: 40px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    margin: 0
+}
+
+@media (min-width: 991px) {
+    .card-pricing__price {
+        font-size: 60px
+    }
+}
+
+.card-pricing__price span {
+    font-size: 40px;
+    vertical-align: middle;
+    position: relative;
+    bottom: 5px
+}
+
+.card-pricing__list {
+    padding: 30px 8px 25px 8px;
+    border-bottom: 1px solid #ebebeb
+}
+
+.card-pricing__list li {
+    margin-bottom: 12px
+}
+
+.card-pricing__list li:last-child {
+    margin-bottom: 0
+}
+
+.card-pricing__list li i, .card-pricing__list li span {
+    font-size: 13px;
+    margin-right: 10px
+}
+
+.card-pricing__list li.unvalid i, .card-pricing__list li.unvalid span {
+    color: #f81c1c;
+    font-size: 12px
+}
+
+.card-pricing__footer {
+    padding: 45px 0
+}
+
+.testimonial {
+    max-width: 970px;
+    margin-right: auto;
+    margin-left: auto
 }
 
 .about__content h2 {
