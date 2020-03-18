@@ -56,6 +56,36 @@ $(function() {
         target.appendChild(iframe);
         iframe.src = "https://enjoy.gitstore.app/repositories/OwenMelbz/forged-ui/embed";
     }
+
+    function iframeAutoScale() {
+        'use strict';
+
+        $('iframe').each(function () {
+            var
+                parentWidth = $(this).parent().innerWidth(),
+                ratio = 0.75,	// default ratio (4:3)
+                width = $(this).attr('width'),
+                height = $(this).attr('height');
+
+            // overwrite default ratio if width and height attributes are not set
+            if (width !== undefined && height !== undefined) {
+                ratio = height / width;
+            }
+
+            $(this).attr('width', parentWidth);
+            $(this).attr('height', parentWidth * ratio);
+        });
+    }
+
+    // onload
+    $(document).ready(function () {
+        iframeAutoScale();
+    });
+
+    // on window resize
+    $(window).resize(function () {
+        iframeAutoScale();
+    });
 });
 
 
